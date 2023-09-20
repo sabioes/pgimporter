@@ -1,0 +1,15 @@
+{
+	"Flask Tutorial: template extending layout.html": {
+		"prefix": "flextlayout",
+		"body": [
+			"{% extends \"layout.html\" %}",
+			"{% block title %}",
+			"$0",
+			"{% endblock %}",
+			"{% block content %}",
+			"{% endblock %}"
+		],
+	
+		"description": "Boilerplate template that extends layout.html"
+	}
+}
