@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <title>Hello, Flask</title>
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
-    </head>
-    <body>
-        {%if name %}
-            <span class="message">Hello there, {{ name }}!</span> It's {{ date.strftime("%A, %d %B, %Y at %X") }}.
-        {% else %}
-            <span class="message">What's your name? Provide it after /hello/ in the URL.</span>
-        {% endif %}
-    </body>
-</html>
+{% extends "layout.html" %}
+{% block title %}
+Dashboard - PGImporter
+{% endblock %}
+{% block content %}
+<h1>List Items:</h1>
+<ul>
+    {% for filename, file_size in items %}
+        <li>Filename: {{ filename }}, Size: {{ file_size }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
