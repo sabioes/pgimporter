@@ -1,6 +1,8 @@
 from flask import Flask
 from flask import render_template
 from datetime import datetime
+
+from pgimporter_app.pgimporter import Pgimporter
 from . import app
 
 @app.route("/")
@@ -14,6 +16,14 @@ def about():
 @app.route("/contact/")
 def contact():
     return render_template("contact.html")
+
+#items = ["Item 1", "Item 2", "Item 3"]
+
+@app.route("/pgimporter/")
+def dashboard():
+    
+    items = Pgimporter.read_imports()
+    return render_template("dashboard.html", items=items)
 
 @app.route("/hello/")
 @app.route("/hello/<name>")
