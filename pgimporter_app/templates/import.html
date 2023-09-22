@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block title %}
+Import Dump
+{% endblock %}
+{% block content %}
+<div class="table-responsive">
+    <h1>Import Dump</h1>
+    {% if result %}
+        {{ result | safe }}
+    {% endif %}   
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="Upload">
+    </form>
+    <div id="dropzone" ondragover="dragOver(event);" ondrop="drop(event);">
+        <input type="file" id="fileInput" style="display: none;" accept=".txt, .pdf, .jpg, .jpeg, .png, .gif, .log, .sql">
+        <p>Drop file here</p>
+    </div>
+</div>
+<script>
+    function dragOver(event) {
+        event.preventDefault();
+        document.getElementById('dropzone').style.backgroundColor = '#f0f0f0';
+    }
+
+    function drop(event) {
+        event.preventDefault();
+        document.getElementById('dropzone').style.backgroundColor = 'white';
+
+        var fileInput = document.getElementById('fileInput');
+        fileInput.files = event.dataTransfer.files;
+        fileInput.dispatchEvent(new Event('change'));
+    }
+
+    document.getElementById('dropzone').addEventListener('click', function() {
+        document.getElementById('fileInput').click();
+    });
+
+    document.getElementById('fileInput').addEventListener('change', function() {
+        var filename = this.files[0].name;
+        document.getElementById('dropzone').innerHTML = '<p>' + filename + '</p>';
+    });
+</script>
+{% endblock %}

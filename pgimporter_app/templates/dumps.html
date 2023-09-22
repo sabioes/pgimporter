@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block title %}
+Dumps List
+{% endblock %}
+{% block content %}
+<div class="table-responsive">
+    <table class="table user-list">
+        <h1>Dumps List</h1>
+        <thead>
+            <tr>
+                <th><span>File type</span></th>
+                <th><span>Dump</span></th>
+                <th><span>Size</span></th>
+                <th><span>Date</span></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for file_type, filename, file_size, file_creation_date in items %}
+            <tr>
+                <td>
+                    {{ file_type | safe }}
+                </td>
+                <td>
+                    {{ filename }}
+                </td>
+                <td>
+                    {{ file_size }}
+                </td>
+                <td>
+                    {{ file_creation_date }}
+                </td>
+                <td class="right-align">
+                    <a class="btn btn-primary" href="{{ url_for('download_file', filename=filename) }}" role="button">Download File</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
