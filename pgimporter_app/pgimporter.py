@@ -3,7 +3,7 @@ import os, datetime, subprocess
 class Pgimporter:
     @staticmethod
     def read_dumps(folder_path):
-
+        
         # Initialize an empty list to store file information
         file_info_list = []
 
@@ -56,7 +56,7 @@ class Pgimporter:
             print("Running the pg_dump command: " + command)
             result = subprocess.run(command, check=True, shell=True, preexec_fn=lambda: os.setuid(uid), stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             
-            result_file = open('/u02/pgbackup/db/postgres/import/pg_dump_result_'+ datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '.log', 'w')
+            result_file = open('/u02/pgbackup/db/postgres/import_logs/pg_dump_result_'+ datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '.log', 'w')
             result_file.write(str(result.stderr))
             result_file.close()
             
