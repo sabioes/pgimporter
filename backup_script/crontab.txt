@@ -1,0 +1,3 @@
+https://crontab.guru/#30_*_*_*_*
+
+30 0 * * * postgres /u02/pgbackup/pgbackup_dump.sh  (example). Obs.: Expression editor, here look: Crontab.guru - The cron schedule expression editor
