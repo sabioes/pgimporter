@@ -1,0 +1,11 @@
+[Unit]
+Description=Service PGImporter App on Gunicorn Server
+DefaultDependencies=no
+Before=shutdown.target
+
+[Service]
+ExecStart=/bin/sh /u02/pgbackup/pgimporter/startup.sh
+Type=simple
+
+[Install]
+WantedBy=shutdown.target

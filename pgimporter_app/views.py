@@ -1,8 +1,8 @@
-from flask import Flask
-from flask import render_template, send_file, request
-from werkzeug.utils import secure_filename
+
 import os
 
+from flask import render_template, send_file, request, Flask
+from werkzeug.utils import secure_filename
 from pgimporter_app.pgimporter import Pgimporter
 from . import app
 
@@ -55,3 +55,6 @@ def import_dump(filename):
     #pass the filename to method import_dump() of pgimporter
     result = Pgimporter.import_dump(filename)
     return render_template("import.html", result=result)
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0')
