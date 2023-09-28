@@ -14,9 +14,19 @@ class Pgimporter:
             # Check if the item is a file (not a directory)
             if os.path.isfile(file_path):
                 
-                file_type_bs_color = "info" if filename.split(".")[1] == "sql" else "primary"
-                file_type = '<span class="badge bg-'+ file_type_bs_color +'">'+filename.split(".")[1]+'</span>'
+                file_type_bs_color = " "
+                file_extension = " "
+                try:
+                    filename.split(".")[1]
+                except:
+                    file_type_bs_color = "secondary"
+                    file_extension = "Other"
+                else:
+                    file_type_bs_color = "info" if filename.split(".")[1] == "sql" else "primary"
+                    file_extension = filename.split(".")[1]
                 
+                file_type = '<span class="badge bg-'+ file_type_bs_color +'">'+ file_extension +'</span>'
+                    
                 # Get the size of the file in bytes
                 file_size = os.path.getsize(file_path)
                 
@@ -39,17 +49,18 @@ class Pgimporter:
     def import_dump(dump_filename):
         #https://stackoverflow.com/questions/43380273/pg-dump-pg-restore-password-using-python-module-subprocess
         #Run the OS level command "pg_dump postgres"
-        if dump_filename.split(".")[1] != "sql": return "Incorrect dump file: " + dump_filename.split(".")[1]
+        #if dump_filename.split(".")[1] != "sql": return "Incorrect dump file: " + dump_filename.split(".")[1]
 
 
         # Replace 'command' with the actual command you want to run
         absdumppath = '/u02/pgbackup/db/postgres/import/' + dump_filename
         
         database = 'postgres'
-        log = 'pg_dump_result.log' 
+        #pg_restore --verbose -d dbname filename
+        #psql -U postgres -d postgres < <DB_DUMPFILE> -a 1>import-database-out<LOG_FILE_SUFFIX>.log 2>import-database-error<LOG_FILE_SUFFIX>.log
         #pg_dump postgres --verbose > ats110-after-qf.sql | tee pg_dump_ats110_after_qf_execution.log
         
-        command = 'pg_dump ' + database + ' --verbose > ' + absdumppath 
+        command = 'pg_dump ' + database + ' --verbose > ' + absdumppath         
         uid = 54321
         
         try:

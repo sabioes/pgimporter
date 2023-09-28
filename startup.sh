@@ -3,11 +3,11 @@ export PATH=/home/postgres/.local/bin:$PATH
 
 echo ${PATH}
 
-if [ ${EUID} -ne 54321 ];
-then 
+#if [ ${EUID} -ne 54321 ];
+#then 
     # this means to be runned as postgres user
-    exit 1 
-fi
+#    exit 1 
+#fi
 
 cd /u02/pgbackup/pgimporter
  
