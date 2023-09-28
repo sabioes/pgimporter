@@ -46,15 +46,17 @@ def dashboarddumps():
     items = Pgimporter.read_dumps('/u02/pgbackup/db/postgres/dumps/')
     return render_template('dumps.html', items=items)
 
-@app.route('/download/<filename>')
+@app.route('/download/<filename>', methods=['GET'])
 def download_file(filename):
     
-    if filename.split('.')[1] == 'sql':
-        # Define the path to the file you want to serve
-        file_path = f'/u02/pgbackup/db/postgres/dumps/{filename}'  # Replace with the actual path to your files
-    elif filename.split('.')[1] == 'log':
-        # Define the path to the file you want to serve
-        file_path = f'/u02/pgbackup/db/postgres/import_logs/{filename}'  # Replace with the actual path to your files
+    # Define the path to the file you want to serve
+    if request.args.get('type') == 'dump':
+        file_path = f'/u02/pgbackup/db/postgres/dumps/{filename}'
+    elif request.args.get('type') == 'import':
+        file_path = f'/u02/pgbackup/db/postgres/import/{filename}'
+    elif request.args.get('type') == 'import_logs':
+        file_path = f'/u02/pgbackup/db/postgres/import_logs/{filename}'
+    
     # Use send_file to send the file to the user's browser
     return send_file(file_path, as_attachment=True)
 

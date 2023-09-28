@@ -49,7 +49,7 @@ Import Dump
                         {{ file_creation_date }}
                     </td>
                     <td>
-                        <a class="btn btn-primary right-align" href="{{ url_for('import_dump', filename=filename) }}"
+                        <a class="btn btn-primary right-align" href="{{ url_for('import_dump', filename=filename, type='import') }}"
                             role="button">Run Import</a>
                     </td>
                 </tr>
@@ -87,7 +87,7 @@ Import Dump
                         {{ file_creation_date }}
                     </td>
                     <td>
-                        <a class="btn btn-primary right-align" href="{{ url_for('download_file', filename=filename) }}"
+                        <a class="btn btn-primary right-align" href="{{ url_for('download_file', filename=filename, type='import_logs') }}"
                             role="button">Download</a>
                     </td>
                 </tr>

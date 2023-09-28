@@ -36,8 +36,8 @@ Dumps
                         {{ file_creation_date }}
                     </td>
                     <td>
-                        <a class="btn btn-primary right-align" href="{{ url_for('download_file', filename=filename) }}"
-                            role="button">Download File</a>
+                        <a class="btn btn-primary right-align" href="{{ url_for('download_file', filename=filename, type='dump') }}"
+                            role="button">Download</a>
                     </td>
                 </tr>
                 {% endfor %}
