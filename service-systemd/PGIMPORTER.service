@@ -5,6 +5,7 @@ Before=shutdown.target
 
 [Service]
 ExecStart=/bin/sh /u02/pgbackup/pgimporter/startup.sh
+Restart=on-failure
 Type=simple
 
 [Install]
