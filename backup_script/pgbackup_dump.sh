@@ -12,8 +12,8 @@ DB_DUMP_OUTPUT_DIR_PATH="/u02/pgbackup/db/$DB_NAME/dumps"
 
 
 execute_backup() {
-	sudo su - postgres
-	echo "pg_dump -U ${BD_USERNAME} -Fc ${DB_NAME} > ${DB_DUMP_OUTPUT_DIR_PATH}/${DB_DUMP_FILES_NAME}_${DATE} --verbose 2>${DB_DUMP_OUTPUT_DIR_PATH}/${DB_DUMP_FILES_NAME}_${DATE}.log"
+	#sudo su - postgres
+	pg_dump -U ${BD_USERNAME} -Fc ${DB_NAME} > ${DB_DUMP_OUTPUT_DIR_PATH}/${DB_DUMP_FILES_NAME}_${DATE} --verbose 2>${DB_DUMP_OUTPUT_DIR_PATH}/${DB_DUMP_FILES_NAME}_${DATE}.log
 }
 
 check_variables() {
