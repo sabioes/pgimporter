@@ -67,8 +67,11 @@ class Pgimporter:
             print("Running the pg_dump command: " + command)
             result = subprocess.run(command, check=True, shell=True, preexec_fn=lambda: os.setuid(uid), stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             
+            #result = result.stderr
+            #formatted_result = result.replace('\\n', '\n').replace('\\t', '\t')
+            
             result_file = open('/u02/pgbackup/db/postgres/import_logs/pg_dump_result_'+ datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '.log', 'w')
-            result_file.write(str(result.stderr))
+            result_file.write(result.stderr.decode())
             result_file.close()
             
             if result.returncode == 0 : return "Import Succeeded!" 

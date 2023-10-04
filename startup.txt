@@ -7,3 +7,6 @@ pip install wheel
 pip install gunicorn flask
 
 gunicorn --bind=0.0.0.0 --workers=4 startup:app
+
+list gunicorn workers:
+sudo lsof -i:8000
