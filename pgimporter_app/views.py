@@ -6,7 +6,7 @@ from werkzeug.utils import secure_filename
 from pgimporter_app.pgimporter import Pgimporter
 from . import app
 
-@app.route("/about/")
+@app.route("/about")
 def about():
     return render_template("about.html")
 

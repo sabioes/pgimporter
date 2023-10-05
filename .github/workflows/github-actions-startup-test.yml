@@ -28,10 +28,12 @@ jobs:
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
       # install dependencies from requirements file
-      - name: Install Python dependencies
-        run: pip install -r requirements.txt 
-      - name: Install Gunicorn to server
-        run: pip install gunicorn
-      - name: Run pgimporter with Gunicorn
-        run: gunicorn --bind=0.0.0.0 --workers=4 startup:app
+      - run: pip install -r requirements.txt  
+      - run:  python test_main.py
+
+      - uses: akhileshns/heroku-deploy@v3.12.12 #
+        with:
+          heroku_api_key: 421f31cc-0c9b-4915-b26b-4d17ae816baf
+          heroku_app_name: khabdrick-todo-101
+          heroku_email: muhamzyali@gmail.com
 
