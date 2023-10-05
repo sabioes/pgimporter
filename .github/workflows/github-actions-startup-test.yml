@@ -33,6 +33,6 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.12.12 #
         with:
           heroku_api_key: 8ea0e257-3c00-4db0-bf57-682ce46ab21b
-          heroku_app_name: PGImporter
+          heroku_app_name: startup:app
           heroku_email: sabioes@gmail.com
 
