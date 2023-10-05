@@ -1,7 +1,7 @@
 
 import os
 
-from flask import render_template, send_file, request, Flask
+from flask import redirect, render_template, send_file, request, Flask
 from werkzeug.utils import secure_filename
 from pgimporter_app.pgimporter import Pgimporter
 from . import app
@@ -80,10 +80,10 @@ def download_file(filename):
 @app.route('/import/<filename>')
 def import_dump(filename):
     #pass the filename to method import_dump() of pgimporter
-    result = Pgimporter.import_dump(filename)
-    import_sql_files = Pgimporter.read_dumps('/u02/pgbackup/db/postgres/import/')
-    import_logs = Pgimporter.read_dumps('/u02/pgbackup/db/postgres/import_logs/')
-    return render_template("import.html", result=None, import_sql_files=import_sql_files, import_logs=import_logs)
+    Pgimporter.import_dump(filename)
+    
+    return redirect('/import')
+    #return render_template("import.html", result=None, import_sql_files=import_sql_files, import_logs=import_logs)
 
 #if __name__ == "__main__":
 #    app.run(host='0.0.0.0')
