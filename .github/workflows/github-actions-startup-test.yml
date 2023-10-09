@@ -30,5 +30,5 @@ jobs:
       - name: install dependencies from requirements file
         run: pip install -r requirements.txt  
       - name: Run functional tests
-        run: cd tests && python -m pytest
+        run: python -m pytest
 
