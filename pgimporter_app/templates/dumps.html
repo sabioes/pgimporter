@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block title %}
+Dumps
+{% endblock %}
+{% block content %}
+<div class="table-responsive">
+    <h1>Dumps</h1>
+
+    <div class="my-3 p-3 bg-body rounded shadow-sm">
+        <h6 class="border-bottom pb-2 mb-0">Dumps</h6>
+
+        <table class="table user-list">
+            <thead>
+                <tr>
+                    <th><span>File type</span></th>
+                    <th><span>Dump</span></th>
+                    <th><span>Size</span></th>
+                    <th><span>Date</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for file_type, filename, file_size, file_creation_date in items %}
+
+                <tr>
+                    <td>
+                        {{ file_type | safe }}
+                    </td>
+                    <td>
+                        {{ filename }}
+                    </td>
+                    <td>
+                        {{ file_size }}
+                    </td>
+                    <td>
+                        {{ file_creation_date }}
+                    </td>
+                    <td>
+                        <a class="btn btn-primary right-align" href="{{ url_for('download_file', filename=filename, type='dump') }}"
+                            role="button">Download</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -10,7 +10,7 @@
             "request": "launch",
             "module": "flask",
             "env": {
-                "FLASK_APP": "pgimporter_app.pgimporter",
+                "FLASK_APP": "pgimporter_app.app",
                 "FLASK_DEBUG": "1"
             },
             "args": [

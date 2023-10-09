@@ -1,0 +1,100 @@
+{% extends "layout.html" %}
+{% block title %}
+Import Dump
+{% endblock %}
+{% block content %}
+<div class="table-responsive">
+    <h1>Import</h1>
+
+    <form action="/import" method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+            {% if result %}
+            {{ result | safe }}
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            <input class="form-control form-control-lg" type="file" name="file">
+        </div>
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="Upload Dump">
+        </div>
+    </form>
+
+    {% if import_sql_files %}
+    <div class="my-3 p-3 bg-body rounded shadow-sm">
+        <h6 class="border-bottom pb-2 mb-0">Dumps</h6>
+        <table class="table user-list">
+            <thead>
+                <tr>
+                    <th><span>File type</span></th>
+                    <th><span>Dump</span></th>
+                    <th><span>Size</span></th>
+                    <th><span>Date</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for file_type, filename, file_size, file_creation_date in import_sql_files %}
+                <tr>
+                    <td>
+                        {{ file_type | safe }}
+                    </td>
+                    <td>
+                        {{ filename }}
+                    </td>
+                    <td>
+                        {{ file_size }}
+                    </td>
+                    <td>
+                        {{ file_creation_date }}
+                    </td>
+                    <td>
+                        <a class="btn btn-primary right-align" href="{{ url_for('import_dump', filename=filename, type='import') }}"
+                            role="button">Run Import</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+    {% if import_logs %}
+    <div class="my-3 p-3 bg-body rounded shadow-sm">
+        <h6 class="border-bottom pb-2 mb-0">Logs</h6>
+        <table class="table user-list">
+            <thead>
+                <tr>
+                    <th><span>File type</span></th>
+                    <th><span>Dump</span></th>
+                    <th><span>Size</span></th>
+                    <th><span>Date</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for file_type, filename, file_size, file_creation_date in import_logs %}
+                <tr>
+                    <td>
+                        {{ file_type | safe }}
+                    </td>
+                    <td>
+                        {{ filename }}
+                    </td>
+                    <td>
+                        {{ file_size }}
+                    </td>
+                    <td>
+                        {{ file_creation_date }}
+                    </td>
+                    <td>
+                        <a class="btn btn-primary right-align" href="{{ url_for('download_file', filename=filename, type='import_logs') }}"
+                            role="button">Download</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
