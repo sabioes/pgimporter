@@ -1,12 +1,10 @@
-from werkzeug.test import Client
-from werkzeug.testapp import test_app
+from tests.conftest import client
 
-def test_dump_page(client):
+def test_login_page(client):
     response = client.get("/")
     assert response.status_code == 200
     #An example for future implementations
     assert b"Dumps" in response.data
-
 #
 #def test_homepage(client):
 #    response = client.get("/import")
