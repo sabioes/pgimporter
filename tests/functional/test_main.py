@@ -4,7 +4,8 @@ def test_login_page(client):
     response = client.get("/")
     assert response.status_code == 200
     #An example for future implementations
-    assert b"Dumps" in response.data
+    assert b"Dumpse" in response.data
+    print("executed")
 #
 #def test_homepage(client):
 #    response = client.get("/import")

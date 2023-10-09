@@ -1,14 +1,14 @@
-import pytest
-from pgimporter_app.webapp import app
+import pytest, sys
+
+sys.path.append('../pgimporter') 
+
+from pgimporter_app.app import app as flask_app
 
 @pytest.fixture
 def app():
-    app = app
+    yield flask_app
 
-@pytest.fixture()
+@pytest.fixture
 def client(app):
     return app.test_client()
 
-@pytest.fixture()
-def runner(app):
-    return app.test_cli_runner()
