@@ -9,27 +9,27 @@ This tool is intended to be used as support tool speed up the download of databa
 
 #### Ubuntu
 
-1. Update and upgrade the package from apt repositories:
+Update and upgrade the package from apt repositories:
 
 ```bash
   sudo apt update && sudo apt upgrade -y
 ```
-2. Install the required dependency package:
+Install the required dependency package:
 
 ```bash
   sudo apt install software-properties-common -y
 ```
-3. Add the deadsnakes PPA to the apt repository source list:
+   Add the deadsnakes PPA to the apt repository source list:
 
 ```bash
   sudo add-apt-repository ppa:deadsnakes/ppa
 ```
-4. Install Python 3.11:
+Install Python 3.11:
 
 ```bash
   sudo apt install python3.11
 ```
-5. Install pip for Python 3.11:
+Install pip for Python 3.11:
 
 ```bash
   curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11 
@@ -49,7 +49,7 @@ Check the bash variables in script file:
 ```bash
   pgbackup_dump.sh
 ```
-Create a cron table entry to schedule the backup hourly/daily/weekly
+Create a cron table entry to schedule the backup hourly/daily/weekly:
 
 ```bash
   crontab -e
@@ -62,25 +62,25 @@ Create a cron table entry to schedule the backup hourly/daily/weekly
 
 ### Starting PGImporter
 
-Clone the project
+Clone the project:
 
 ```bash
   git clone https://link-to-project
 ```
 
-Go to the project directory
+Go to the project directory:
 
 ```bash
   cd pgimporter
 ```
 
-Install dependencies
+Install dependencies:
 
 ```bash
   pip3.11 install -r requirements.txt
 ```
 
-Start the Gunicorn server with 4 threads as daemon
+Start the Gunicorn server with 4 threads as daemon:
 
 ```bash
   gunicorn --bind=0.0.0.0 --workers=4 startup:app --daemon
@@ -88,13 +88,13 @@ Start the Gunicorn server with 4 threads as daemon
 
 ### Stop PGImporter
 
-Check all Gunicorn process
+Check all Gunicorn process:
 
 ```bash
   lsof -i:8000
 ```
 
-Kill all Gunicorn process
+Kill all Gunicorn process:
 
 ```bash
   pkill gunicorn
@@ -104,11 +104,6 @@ Kill all Gunicorn process
 
 To run tests, run the following commands
 
-Go to tests directory:
-
-```bash
-  cd tests/
-```
 
 Execute the pytests:
 
