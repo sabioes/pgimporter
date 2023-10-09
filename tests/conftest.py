@@ -1,6 +1,6 @@
 import pytest, sys
 
-sys.path.append('../pgimporter') 
+#sys.path.append('../pgimporter') 
 
 from pgimporter_app.app import app as flask_app
 

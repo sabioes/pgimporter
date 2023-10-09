@@ -6,7 +6,6 @@ def test_login_page(client):
     #An example for future implementations
     assert b"Dumps" in response.data
 
-
 def test_homepage(client):
     response = client.get("/import")
     assert response.status_code == 200
