@@ -9,4 +9,4 @@ startup.py, that just imports the app object. You can then just specify
 startup:app in the Gunicorn command.
 """
 
-from pgimporter_app.webapp import app
+from pgimporter_app.app import views
