@@ -27,12 +27,8 @@ jobs:
       # You can test your matrix by printing the current Python version
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
-      # install dependencies from requirements file
+      - name: install dependencies from requirements file
       - run: pip install -r requirements.txt  
-      - run:  python unit_tests/test_main.py
-      - uses: akhileshns/heroku-deploy@v3.12.12 #
-        with:
-          heroku_api_key: 8ea0e257-3c00-4db0-bf57-682ce46ab21b
-          heroku_app_name: startup:app
-          heroku_email: sabioes@gmail.com
+      - name: Run functional tests
+      - run: cd tests && python -m pytest
 
