@@ -5,6 +5,8 @@ This tool is intended to be used as support tool speed up the download of databa
 
 ## Installation of PGimporter
 
+Compatibility with Py 3.8, 3.9, 3.10, 3,11
+
 ### Linux
 
 #### Ubuntu
