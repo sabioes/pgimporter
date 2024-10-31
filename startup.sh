@@ -1,7 +1,6 @@
 #/bin/bash
-export PATH=/home/postgres/.local/bin:$PATH
-
-echo ${PATH}
+#export PATH=/home/postgres/.local/bin:$PATH
+#echo ${PATH}
 
 #if [ ${EUID} -ne 54321 ];
 #then 
@@ -9,6 +8,7 @@ echo ${PATH}
 #    exit 1 
 #fi
 
-cd /u02/pgbackup/pgimporter
+#cd /u02/pgbackup/pgimporter
  
-gunicorn --bind=0.0.0.0 --workers=4 startup:app --daemon
+#gunicorn --bind=0.0.0.0 --workers=4 startup:app --daemon
+gunicorn --bind=0.0.0.0 --workers=4 startup:app 

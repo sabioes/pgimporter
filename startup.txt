@@ -6,7 +6,7 @@ install python3.11 and PIP
 pip install wheel
 pip install gunicorn flask
 
-gunicorn --bind=0.0.0.0 --workers=4 startup:app
+gunicorn --bind=0.0.0.0 --workers=4 pgimporter_app:app
 
 list gunicorn workers:
 sudo lsof -i:8000
