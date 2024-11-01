@@ -1,5 +1,7 @@
 import os, datetime, subprocess
 
+from flask import flash
+
 class Pgimporter:
     @staticmethod
     def read_dumps(folder_path):
@@ -41,6 +43,7 @@ class Pgimporter:
                     file_info_list.append((file_type, filename, file_size, file_creation_date))
             return file_info_list
         except FileNotFoundError as ex:
+            flash("No dir or file discovered", "danger")
             print("No dir or file discovered")
             return file_info_list
         # Now, file_info_list contains tuples of (filename, file_size)
