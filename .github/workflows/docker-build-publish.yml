@@ -21,8 +21,12 @@ jobs:
       # Step 3: Build Docker Image
       - name: Build Docker Image
         run: |
-          docker build -t pcarlos/pgimporter_app:release-candidate .
-      # Step 4: Push the Docker Image to Docker Hub
+          docker build -t pcarlos/pgimporter_app:rc .
+      # Step 4: Tag the Docker Image
+      - name: Tag Docker Image
+        run: |
+          docker tag pcarlos/pgimporter_app pcarlos/pgimporter_app:rc
+      # Step 5: Push the Docker Image to Docker Hub
       - name: Push Docker Image to Docker Hub
         run: |
-          docker push pcarlos/pgimport_app:release-candidate
+          docker push pcarlos/pgimport_app:rc
