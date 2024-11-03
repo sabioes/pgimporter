@@ -2,8 +2,8 @@
 FROM python:3.11-slim
 
 # Set Environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONNUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONNUNBUFFERED=1
 # Environment variables for Flask and Gunicorn
 ENV FLASK_APP=pgimporter_app
 ENV FLASK_ENV=production

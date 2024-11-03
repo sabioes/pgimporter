@@ -29,4 +29,4 @@ jobs:
       # Step 5: Push the Docker Image to Docker Hub
       - name: Push Docker Image to Docker Hub
         run: |
-          docker push pcarlos/pgimport_app:rc
+          docker push pcarlos/pgimporter_app:rc
