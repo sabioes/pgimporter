@@ -8,6 +8,17 @@ from .config import Config
 
 main_blueprint = Blueprint('main', __name__)
 
+@main_blueprint.route("/")
+def dashboarddumps():
+    try:
+        dumps_path = current_app.config['EXPORT_DUMP_PATH']
+        items = Pgimporter.read_dumps(dumps_path)
+    except Exception as e:    
+        flash("Error loading dumps.", "danger")
+        current_app.logger.error(f"Failed to load dumps: {e}")
+        items = []
+    return render_template('dumps.html', items=items)
+
 @main_blueprint.route("/about")
 def about():
     # Render the About page with error handling.
@@ -17,6 +28,14 @@ def about():
         flash("An error occurred while trying to load the About page. Please try again later.", "error")
         return redirect(url_for('main.index'))  # Redirect to a safe page, like the homepage
 
+@main_blueprint.route("/configs")
+def configs():
+    # Render the Configurations page with error handling.
+    try:
+        return render_template("configs.html", configs=current_app.config)
+    except Exception as e:
+        flash("An error occurred while trying to load the Configuration page. Please try again later.", "error")
+        return redirect(url_for('main.index'))
 
 @main_blueprint.route("/import", methods=['GET','POST'])
 def dashboardimport():
@@ -48,19 +67,6 @@ def dashboardimport():
                 result_message = f'<div class="alert alert-danger" role="alert">Unexpected error on upload: {e.strerror}</div>'
         #return render_template("import.html", result=result, import_sql_files=import_sql_files, import_logs=import_logs)
         return render_import_page(result_message)
-
-
-@main_blueprint.route("/")
-def dashboarddumps():
-    try:
-        dumps_path = current_app.config['EXPORT_DUMP_PATH']
-        items = Pgimporter.read_dumps(dumps_path)
-    except Exception as e:    
-        flash("Error loading dumps.", "danger")
-        current_app.logger.error(f"Failed to load dumps: {e}")
-        items = []
-    return render_template('dumps.html', items=items)
-
 
 @main_blueprint.route('/download/<filename>', methods=['GET'])
 def download_file(filename):

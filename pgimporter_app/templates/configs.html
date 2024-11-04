@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block title %}
+Configuration
+{% endblock %}
+{% block content %}
+<h1>Configuration</h1>
+<p>This is the page for {{ config['SITE_NAME'] }} settings</p>
+{% if config['DEBUG'] %}
+    <p>Debug mode is enabled!</p>
+{% else %}
+    <p>Debug mode is disabled.</p>
+{% endif %}
+<h2>Edit Configuration</h2>
+<form method="POST">
+    <label for="site_name">Site Name:</label><br>
+    <input type="text" id="site_name" name="site_name" value="{{ config['SITE_NAME'] }}"><br><br>
+    <input type="submit" value="Update Configuration">
+</form>
+{% endblock %}
+
