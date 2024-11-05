@@ -72,3 +72,6 @@ __pycache__
 
 # VScode
 .vscode/
+
+# Python venv 
+dev_venv/
