@@ -1,7 +1,7 @@
 import os
 import datetime
 import subprocess
-from flask import flash
+from flask import flash # type: ignore
 
 class Pgimporter:
     

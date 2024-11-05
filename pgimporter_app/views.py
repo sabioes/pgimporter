@@ -1,12 +1,47 @@
 import os
-from flask import  Blueprint, abort, current_app, flash, render_template, request, redirect, send_file, url_for
-from werkzeug.utils import secure_filename
+import lesscpy # type: ignore
+from flask import  Blueprint, abort, current_app, flash, render_template, request, redirect, send_file, url_for # type: ignore
+from werkzeug.utils import secure_filename # type: ignore
 from pgimporter_app.pgimporter import Pgimporter
 from .pgimporter import Pgimporter
 from .config import Config
 
-
 main_blueprint = Blueprint('main', __name__)
+
+def compile_less():
+    less_file_path = 'pgimporter_app/static/less/jumbotron.less'
+    css_file_path = 'pgimporter_app/static/css/styles.css'
+
+    print("Compling less!!!")
+
+    # Check if the LESS file exists
+    if not os.path.isfile(less_file_path):
+        flash("The LESS file not exists", "danger")
+        print("NO FILE FOUND!")
+        return
+
+    try:
+        # Read the LESS file
+        with open(less_file_path, 'r') as less_file:
+            less_content = less_file.read()
+
+        # Compile LESS to CSS
+        #css_content = lesscpy.compile(less_content)
+
+        # Write the compiled CSS to the output file
+        #with open(css_file_path, 'a') as css_file:
+            # css_file.write(css_content)
+            #css_file.write(less_content)
+        flash("Successfully compiled '{less_file_path}' to '{css_file_path}'.","success")
+        print("FUNCIONA!")
+
+    except Exception as e:
+        flash("An error occurred: {e}","danger")
+        print(f"DEU MERDA!:", e)
+
+@main_blueprint.before_request
+def before_request():
+    compile_less()  # Compile LESS before every request
 
 @main_blueprint.route("/")
 def dashboarddumps():
@@ -28,11 +63,11 @@ def about():
         flash("An error occurred while trying to load the About page. Please try again later.", "error")
         return redirect(url_for('main.index'))  # Redirect to a safe page, like the homepage
 
-@main_blueprint.route("/configs")
-def configs():
+@main_blueprint.route("/config")
+def config():
     # Render the Configurations page with error handling.
     try:
-        return render_template("configs.html", configs=current_app.config)
+        return render_template("config.html", configs=current_app.config)
     except Exception as e:
         flash("An error occurred while trying to load the Configuration page. Please try again later.", "error")
         return redirect(url_for('main.index'))
