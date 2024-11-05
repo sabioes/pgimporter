@@ -5,17 +5,27 @@ Configuration
 {% block content %}
 <div class="table-responsive">
     <div class="my-3 p-3 bg-body rounded shadow-sm">
-        <h1>Configuration</h1>
+        <h5 class="border-bottom pb-2 mb-0">Configuration</h6>
         <p>This is the page for {{ config['SITE_NAME'] }} settings</p>
         {% if config['DEBUG'] %}
         <p>Debug mode is enabled!</p>
         {% else %}
         <p>Debug mode is disabled.</p>
         {% endif %}
-        <h2>Edit Configuration</h2>
+        <h6 class="border-bottom pb-2 mb-0">Edit Configuration</h6>
         <form method="POST">
             <label for="site_name">Site Name:</label><br>
             <input type="text" id="site_name" name="site_name" value="{{ config['SITE_NAME'] }}"><br><br>
+
+            <label for="import_dump_path">Site Name:</label><br>
+            <input type="text" id="import_dump_path" name="import_dump_path" value="{{ config['IMPORT_DUMP_PATH'] }}"><br><br>
+
+            <label for="import_logs_path">Site Name:</label><br>
+            <input type="text" id="import_logs_path" name="import_logs_path" value="{{ config['IMPORT_LOGS_PATH'] }}"><br><br>
+
+            <label for="export_dump_path">Site Name:</label><br>
+            <input type="text" id="export_dump_path" name="export_dump_path" value="{{ config['EXPORT_DUMP_PATH'] }}"><br><br>
+
             <input type="submit" value="Update Configuration">
         </form>
     </div>

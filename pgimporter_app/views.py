@@ -61,16 +61,26 @@ def about():
         return render_template("about.html")
     except Exception as e:
         flash("An error occurred while trying to load the About page. Please try again later.", "error")
-        return redirect(url_for('main.index'))  # Redirect to a safe page, like the homepage
+        return redirect(url_for('main_blueprint.index'))  # Redirect to a safe page, like the homepage
 
-@main_blueprint.route("/config")
+@main_blueprint.route("/config", methods=['GET','POST'])
 def config():
-    # Render the Configurations page with error handling.
-    try:
-        return render_template("config.html", configs=current_app.config)
-    except Exception as e:
-        flash("An error occurred while trying to load the Configuration page. Please try again later.", "error")
-        return redirect(url_for('main.index'))
+    if request.method == 'GET':
+        # Render the Configurations page with error handling.
+        try:
+            return render_template("config.html", configs=current_app.config)
+        except Exception as e:
+            flash("An error occurred while trying to load the Configuration page. Please try again later.", "error")
+            return redirect(url_for('main_blueprint.index'))
+    if request.method == 'POST':
+        try:
+            current_app.config['IMPORT_DUMP_PATH'] = request.form.get('import_dump_path')
+            current_app.config['IMPORT_LOGS_PATH'] = request.form.get('import_logs_path')
+            current_app.config['EXPORT_DUMP_PATH'] = request.form.get('export_dump_path')
+            return render_template("config.html", configs=current_app.config)
+        except Exception as e:
+            flash("An error occurred while trying to post the Configuration. Please try again later.", "error")
+            return redirect(url_for('main_blueprint.index'))
 
 @main_blueprint.route("/import", methods=['GET','POST'])
 def dashboardimport():
@@ -140,7 +150,7 @@ def import_dump(filename):
         flash("Error importing file. Please try again.", "danger")
     
     # Redirect to the import page
-    return redirect(url_for('main.dashboardimport'))
+    return redirect(url_for('main_blueprint.dashboardimport'))
 
 #TODO
 #TO DELETE AFTER TESTING
