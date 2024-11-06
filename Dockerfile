@@ -12,7 +12,7 @@ ENV FLASK_ENV=production
 WORKDIR /pgimporter
 
 # Copy the requirements files and install dependencies
-COPY requirements.txt /pgimporter/
+COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
 
 #Copy the application code into the container
@@ -22,4 +22,4 @@ COPY . /pgimporter
 EXPOSE 8080
 
 # Run the Flask app with Gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--timeout", "60", "--threads", "3", "--workers", "4", "pgimporter_app:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--timeout", "60", "--threads", "3","--workers", "4", "--workers", "4", "pgimporter_app:create_app()"]

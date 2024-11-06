@@ -39,10 +39,10 @@ class Pgimporter:
         abs_dump_path = os.path.join('/u02/pgbackup/db/postgres/import', dump_filename)
         import_log_path = os.path.join(
             '/u02/pgbackup/db/postgres/import_logs',
-            f'pg_dump_result_{datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}.log'
+            f'pg_restore_result_{datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}.log'
         )
 
-        command = f'pg_dump postgres --verbose > {abs_dump_path}'
+        command = f'pg_restore --verbose -h DB_HOSTNAME -p DB_PORT -U postgres -d postgres {abs_dump_path}'
         uid = 54321
 
         try:

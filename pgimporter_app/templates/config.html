@@ -6,28 +6,71 @@ Configuration
 <div class="table-responsive">
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <h5 class="border-bottom pb-2 mb-0">Configuration</h6>
-        <p>This is the page for {{ config['SITE_NAME'] }} settings</p>
-        {% if config['DEBUG'] %}
-        <p>Debug mode is enabled!</p>
-        {% else %}
-        <p>Debug mode is disabled.</p>
-        {% endif %}
-        <h6 class="border-bottom pb-2 mb-0">Edit Configuration</h6>
-        <form method="POST">
-            <label for="site_name">Site Name:</label><br>
-            <input type="text" id="site_name" name="site_name" value="{{ config['SITE_NAME'] }}"><br><br>
-
-            <label for="import_dump_path">Import dump path:</label><br>
-            <input type="text" id="import_dump_path" name="import_dump_path" value="{{ config['IMPORT_DUMP_PATH'] }}"><br><br>
-
-            <label for="import_logs_path">Import logs path:</label><br>
-            <input type="text" id="import_logs_path" name="import_logs_path" value="{{ config['IMPORT_LOGS_PATH'] }}"><br><br>
-
-            <label for="export_dump_path">Export logs path:</label><br>
-            <input type="text" id="export_dump_path" name="export_dump_path" value="{{ config['EXPORT_DUMP_PATH'] }}"><br><br>
-
-            <input type="submit" value="Update Configuration">
-        </form>
+            {% if config['DEBUG'] %}
+            <p>Debug mode is enabled!</p>
+            {% else %}
+            <p>Debug mode is disabled.</p>
+            {% endif %}
+            <h6 class="border-bottom pb-2 mb-0">Edit Configuration</h6>
+            <form method="POST">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th colspan="4">Application</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Site Name</td>
+                                    <td>Import dump path</td>
+                                    <td>Import logs path</td>
+                                    <td>Export dump path</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="text" id="site_name" name="site_name" value="{{ config['SITE_NAME'] }}">
+                                    </td>
+                                    <td>
+                                        <input type="text" id="import_dump_path" name="import_dump_path" value="{{ config['IMPORT_DUMP_PATH'] }}">
+                                    </td>
+                                    <td>
+                                        <input type="text" id="import_logs_path" name="import_logs_path" value="{{ config['IMPORT_LOGS_PATH'] }}">
+                                    </td>
+                                    <td>
+                                        <input type="text" id="export_dump_path" name="export_dump_path" value="{{ config['EXPORT_DUMP_PATH'] }}">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-12">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th colspan="4">Database</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Hostname</td>
+                                    <td>Port</td>
+                                    <td>Username</td>
+                                    <td>Password</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <input type="submit" value="Update Configuration">
+                </div>
+            </form>
     </div>
 </div>
 {% endblock %}

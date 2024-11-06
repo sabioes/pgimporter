@@ -71,16 +71,21 @@ def config():
             return render_template("config.html", configs=current_app.config)
         except Exception as e:
             flash("An error occurred while trying to load the Configuration page. Please try again later.", "error")
-            return redirect(url_for('main_blueprint.index'))
+            return redirect(url_for('main.config'))
     if request.method == 'POST':
         try:
             current_app.config['IMPORT_DUMP_PATH'] = request.form.get('import_dump_path')
             current_app.config['IMPORT_LOGS_PATH'] = request.form.get('import_logs_path')
             current_app.config['EXPORT_DUMP_PATH'] = request.form.get('export_dump_path')
+            current_app.config['DB_HOSTNAME'] = request.form.get('')
+            current_app.config['DB_PORT'] = request.form.get('')
+            current_app.config['DB_DATABASE'] = request.form.get('')
+            current_app.config['DB_USERNAME'] = request.form.get('')
+            os.environ['MY_VARIABLE'] = request.form.get('db_password')
             return render_template("config.html", configs=current_app.config)
         except Exception as e:
             flash("An error occurred while trying to post the Configuration. Please try again later.", "error")
-            return redirect(url_for('main_blueprint.index'))
+            return redirect(url_for('main.config'))
 
 @main_blueprint.route("/import", methods=['GET','POST'])
 def dashboardimport():

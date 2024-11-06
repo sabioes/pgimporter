@@ -17,6 +17,6 @@ def test_about_page(client):
     assert b"PGImporter" in response.data
 
 def test_config_page(client):
-    response = client.get("/configs")
+    response = client.get("/config")
     assert response.status_code == 200
     assert b"Configuration" in response.data
