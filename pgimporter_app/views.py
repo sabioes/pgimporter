@@ -12,12 +12,12 @@ def compile_less():
     less_file_path = 'pgimporter_app/static/less/jumbotron.less'
     css_file_path = 'pgimporter_app/static/css/styles.css'
 
-    print("Compling less!!!")
+    #print("Compling less!!!")
 
     # Check if the LESS file exists
     if not os.path.isfile(less_file_path):
         flash("The LESS file not exists", "danger")
-        print("NO FILE FOUND!")
+        #print("NO FILE FOUND!")
         return
 
     try:
@@ -74,6 +74,7 @@ def config():
             return redirect(url_for('main.config'))
     if request.method == 'POST':
         try:
+            current_app.config['SITE_NAME'] = request.form.get('site_name')
             current_app.config['IMPORT_DUMP_PATH'] = request.form.get('import_dump_path')
             current_app.config['IMPORT_LOGS_PATH'] = request.form.get('import_logs_path')
             current_app.config['EXPORT_DUMP_PATH'] = request.form.get('export_dump_path')

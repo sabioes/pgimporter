@@ -5,6 +5,7 @@ class Config:
     # General Configurations
     SITE_NAME = "PGImporter" 
     DEBUG = True
+    ENV='development'
 
     # TODO
     SECRET_KEY = os.getenv('SECRET_KEY', 'default-secret-key')
@@ -20,4 +21,25 @@ class Config:
     DB_DATABASE = ""
     DB_USERNAME = ""
     DB_PASSWORD = os.getenv('PGPASSWORD', '')
+
+    DATABASES = {
+        'db1': {
+            'hostname': 'db1.localhost',
+            'port': 5432,
+            'username': 'user1',
+            'password': 'pass1'
+        },
+        'db2': {
+            'hostname': 'db2.localhost',
+            'port': 5432,
+            'username': 'user2',
+            'password': 'pass2'
+        },
+        'db3': {
+            'hostname': 'db3.localhost',
+            'port': 5432,
+            'username': 'user3',
+            'password': 'pass3'
+        }
+    }
     

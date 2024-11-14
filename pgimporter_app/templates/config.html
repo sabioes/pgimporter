@@ -30,16 +30,20 @@ Configuration
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input type="text" id="site_name" name="site_name" value="{{ config['SITE_NAME'] }}">
+                                        <input type="text" id="site_name" name="site_name"
+                                            value="{{ config['SITE_NAME'] }}">
                                     </td>
                                     <td>
-                                        <input type="text" id="import_dump_path" name="import_dump_path" value="{{ config['IMPORT_DUMP_PATH'] }}">
+                                        <input type="text" id="import_dump_path" name="import_dump_path"
+                                            value="{{ config['IMPORT_DUMP_PATH'] }}">
                                     </td>
                                     <td>
-                                        <input type="text" id="import_logs_path" name="import_logs_path" value="{{ config['IMPORT_LOGS_PATH'] }}">
+                                        <input type="text" id="import_logs_path" name="import_logs_path"
+                                            value="{{ config['IMPORT_LOGS_PATH'] }}">
                                     </td>
                                     <td>
-                                        <input type="text" id="export_dump_path" name="export_dump_path" value="{{ config['EXPORT_DUMP_PATH'] }}">
+                                        <input type="text" id="export_dump_path" name="export_dump_path"
+                                            value="{{ config['EXPORT_DUMP_PATH'] }}">
                                     </td>
                                 </tr>
                             </tbody>
@@ -54,17 +58,21 @@ Configuration
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Hostname</td>
-                                    <td>Port</td>
-                                    <td>Username</td>
-                                    <td>Password</td>
+                                    <th>Connection Name</th>
+                                    <th>Hostname</th>
+                                    <th>Port</th>
+                                    <th>Username</th>
+                                    <th>Password</th>
                                 </tr>
+                                {% for db_index, db_data in config['DATABASES'].items() %}
                                 <tr>
-                                    <td>1</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
+                                    <td>{{ db_index }}</td>
+                                    <td><input type="text" id="db_hostname" name="db_hostname" value="{{ db_data['hostname'] }}"></td>
+                                    <td><input type="text" id="db_port" name="db_port" value="{{ db_data['port'] }}"></td>
+                                    <td><input type="text" id="db_username" name="db_username" value="{{ db_data['username'] }}"></td>
+                                    <td><input type="password" id="db_password" name="db_password" placeholder="Enter password" value="{{ db_data['password'] }}"></td>
                                 </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
