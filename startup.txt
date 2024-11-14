@@ -4,8 +4,8 @@ python -m pip install -r requirements.txt
 install python3.11 and PIP
 
 # Create dev environment dedicated for pgimporter
-python -m venv pgimporter
-source pgimporter/bin/activate
+python -m venv dev_venv
+source dev_venv/bin/activate
 
 
 pip install wheel
