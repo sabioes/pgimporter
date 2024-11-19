@@ -10,4 +10,4 @@
 
 #cd /u02/pgbackup/pgimporter
  
-gunicorn --bind=0.0.0.0 --timeout 60 --threads 3 --workers 4 "pgimporter_app:create_app()"
+gunicorn --bind=0.0.0.0 --timeout 60 --threads 3 --workers 4 --keyfile ".ssl/localhost.key" --certfile ".ssl/localhost.crt" --reload "pgimporter_app:create_app()"
