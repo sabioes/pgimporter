@@ -1,0 +1,20 @@
+{
+    "db1": {
+        "hostname": "cloudhost",
+        "port": "5432",
+        "username": "user1",
+        "password": "pass1"
+    },
+    "db2": {
+        "hostname": "localhost",
+        "port": "5432",
+        "username": "user2",
+        "password": "pass2"
+    },
+    "db3": {
+        "hostname": "privatehost",
+        "port": "5432",
+        "username": "user3",
+        "password": "pass3"
+    }
+}

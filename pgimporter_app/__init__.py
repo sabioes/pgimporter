@@ -5,6 +5,10 @@ from .config import Config
 def create_app():
     # Create object app type Flask
     app = Flask(__name__)
+    
+    # Load the file when the app is created
+    Config.loadConfigs()
+    
     # Load Configuration variables
     app.config.from_object(Config)
         

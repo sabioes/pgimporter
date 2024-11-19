@@ -12,7 +12,7 @@ Configuration
             <p>Debug mode is disabled.</p>
             {% endif %}
             <h6 class="border-bottom pb-2 mb-0">Edit Configuration</h6>
-            <form method="POST">
+            <form method="POST" id="formTableConfig">
                 <div class="row">
                     <div class="col-md-12">
                         <table class="table">
@@ -65,12 +65,12 @@ Configuration
                                     <th>Password</th>
                                 </tr>
                                 {% for db_index, db_data in config['DATABASES'].items() %}
-                                <tr>
-                                    <td>{{ db_index }}</td>
-                                    <td><input type="text" id="db_hostname" name="db_hostname" value="{{ db_data['hostname'] }}"></td>
-                                    <td><input type="text" id="db_port" name="db_port" value="{{ db_data['port'] }}"></td>
-                                    <td><input type="text" id="db_username" name="db_username" value="{{ db_data['username'] }}"></td>
-                                    <td><input type="password" id="db_password" name="db_password" placeholder="Enter password" value="{{ db_data['password'] }}"></td>
+                                <tr name="db_{{ db_index }}">
+                                    <td id="{{ db_index }}"><label for="{{ db_index }}">{{ db_index }}</label></td>
+                                    <td><input type="text" id="{{ db_index }}.hostname" name="hostname" value="{{ db_data['hostname'] }}"></td>
+                                    <td><input type="text" id="{{ db_index }}.port" name="port" value="{{ db_data['port'] }}"></td>
+                                    <td><input type="text" id="{{ db_index }}.username" name="username" value="{{ db_data['username'] }}"></td>
+                                    <td><input type="password" id="{{ db_index }}.password" name="password" placeholder="Enter password" value="{{ db_data['password'] }}"></td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
