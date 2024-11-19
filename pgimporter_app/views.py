@@ -78,6 +78,7 @@ def config():
             current_app.config['IMPORT_DUMP_PATH'] = request.form.get('import_dump_path')
             current_app.config['IMPORT_LOGS_PATH'] = request.form.get('import_logs_path')
             current_app.config['EXPORT_DUMP_PATH'] = request.form.get('export_dump_path')
+            current_app.config['DATABASES'] = request.get_json()
             
             Config.saveConfigs(request.get_json())
             return render_template("config.html", configs=current_app.config)

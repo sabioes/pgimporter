@@ -6,7 +6,7 @@
         "password": "pass1"
     },
     "db2": {
-        "hostname": "localhost",
+        "hostname": "externalhost",
         "port": "5432",
         "username": "user2",
         "password": "pass2"
