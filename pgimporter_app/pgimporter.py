@@ -28,9 +28,8 @@ class Pgimporter:
 
             return file_info_list
 
-        except FileNotFoundError:
-            flash("No directory or file discovered", "danger")
-            print("No directory or file discovered")
+        except Exception as ex:
+            print("No directory or file discovered", ex)
             return file_info_list
 
     @staticmethod
